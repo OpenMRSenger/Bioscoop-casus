@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Movie.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bioscoop-casus</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Movie.java</span></div><h1>Movie.java</h1><pre class="source lang-java linenums">import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Een film die in de bioscoop gedraaid kan worden. Een film houdt zelf bij
+ * welke voorstellingen ({@link MovieScreening}) er van hem gepland zijn.
+ */
+public class Movie {
+    private final String title;
+<span class="fc" id="L11">    private final List&lt;MovieScreening&gt; screenings = new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L13">    public Movie(String title) {</span>
+<span class="fc" id="L14">        this.title = title;</span>
+<span class="fc" id="L15">    }</span>
+
+    /**
+     * Plant een nieuwe voorstelling van deze film en koppelt deze meteen
+     * aan de film.
+     *
+     * @param dateAndTime  het tijdstip waarop de voorstelling begint
+     * @param pricePerSeat de basisprijs per stoel voor deze voorstelling
+     * @return de aangemaakte voorstelling
+     */
+    public MovieScreening createScreening(LocalDateTime dateAndTime, double pricePerSeat) {
+<span class="fc" id="L26">        MovieScreening screening = new MovieScreening(this, dateAndTime, pricePerSeat);</span>
+<span class="fc" id="L27">        screenings.add(screening);</span>
+<span class="fc" id="L28">        return screening;</span>
+    }
+
+    public String getTitle() {
+<span class="nc" id="L32">        return title;</span>
+    }
+
+    public List&lt;MovieScreening&gt; getScreenings() {
+<span class="nc" id="L36">        return screenings;</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L41">        return title;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

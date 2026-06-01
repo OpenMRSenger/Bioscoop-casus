@@ -1,3 +1,5 @@
+package nl.avans.bioscoop;
+
 import java.time.LocalDateTime;
 
 /**

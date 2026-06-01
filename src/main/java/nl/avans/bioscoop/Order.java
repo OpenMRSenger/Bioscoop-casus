@@ -1,3 +1,5 @@
+package nl.avans.bioscoop;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.DayOfWeek;

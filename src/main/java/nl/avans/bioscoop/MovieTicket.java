@@ -1,3 +1,5 @@
+package nl.avans.bioscoop;
+
 /**
  * Een kaartje voor een specifieke stoel bij een {@link MovieScreening}.
  * Een kaartje kan premium zijn; de premiumtoeslag wordt echter niet hier,

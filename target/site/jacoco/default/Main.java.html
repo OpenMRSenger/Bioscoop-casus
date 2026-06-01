@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Main.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bioscoop-casus</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Main.java</span></div><h1>Main.java</h1><pre class="source lang-java linenums">import java.time.LocalDateTime;
+
+/**
+ * Kleine demonstratie van het bioscoopmodel. Maakt een paar bestellingen aan,
+ * print de berekende prijs en exporteert naar tekst en JSON.
+ */
+<span class="nc" id="L7">public class Main {</span>
+    public static void main(String[] args) {
+<span class="nc" id="L9">        Movie movie = new Movie(&quot;Dune: Part Two&quot;);</span>
+
+        // Een doordeweekse voorstelling (woensdag) en een weekendvoorstelling (zaterdag).
+<span class="nc" id="L12">        MovieScreening weekday = movie.createScreening(LocalDateTime.of(2026, 6, 3, 20, 0), 10.0);</span>
+<span class="nc" id="L13">        MovieScreening weekend = movie.createScreening(LocalDateTime.of(2026, 6, 6, 20, 0), 10.0);</span>
+
+        // Reguliere bestelling, doordeweeks: 2e kaartje gratis.
+<span class="nc" id="L16">        Order regularWeekday = new Order(1, false);</span>
+<span class="nc" id="L17">        regularWeekday.addSeatReservation(new MovieTicket(weekday, false, 1, 1));</span>
+<span class="nc" id="L18">        regularWeekday.addSeatReservation(new MovieTicket(weekday, true, 1, 2)); // gratis</span>
+<span class="nc" id="L19">        System.out.println(&quot;Order 1 (regulier, doordeweeks): EUR &quot;</span>
+<span class="nc" id="L20">                + String.format(&quot;%.2f&quot;, regularWeekday.calculatePrice())</span>
+                + &quot;  (verwacht 10,00)&quot;);
+
+        // Studentenbestelling, weekend: 2e kaartje gratis dankzij studentenregel.
+<span class="nc" id="L24">        Order studentWeekend = new Order(2, true);</span>
+<span class="nc" id="L25">        studentWeekend.addSeatReservation(new MovieTicket(weekend, true, 2, 1));  // 10 + 2 toeslag</span>
+<span class="nc" id="L26">        studentWeekend.addSeatReservation(new MovieTicket(weekend, false, 2, 2)); // gratis</span>
+<span class="nc" id="L27">        System.out.println(&quot;Order 2 (student, weekend):      EUR &quot;</span>
+<span class="nc" id="L28">                + String.format(&quot;%.2f&quot;, studentWeekend.calculatePrice())</span>
+                + &quot;  (verwacht 12,00)&quot;);
+
+        // Reguliere groepsbestelling van 6 in het weekend: geen gratis kaartjes,
+        // wel 10% groepskorting. 6 x 10 = 60 -&gt; 10% korting = 54,00.
+<span class="nc" id="L33">        Order group = new Order(3, false);</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">        for (int seat = 1; seat &lt;= 6; seat++) {</span>
+<span class="nc" id="L35">            group.addSeatReservation(new MovieTicket(weekend, false, 3, seat));</span>
+        }
+<span class="nc" id="L37">        System.out.println(&quot;Order 3 (regulier, weekend, 6x): EUR &quot;</span>
+<span class="nc" id="L38">                + String.format(&quot;%.2f&quot;, group.calculatePrice())</span>
+                + &quot;  (verwacht 54,00)&quot;);
+
+        // Exporteren naar bestand.
+<span class="nc" id="L42">        group.export(TicketExportFormat.PLAINTEXT);</span>
+<span class="nc" id="L43">        group.export(TicketExportFormat.JSON);</span>
+<span class="nc" id="L44">        System.out.println();</span>
+<span class="nc" id="L45">        System.out.println(&quot;Order 3 geexporteerd naar order_3.txt en order_3.json&quot;);</span>
+<span class="nc" id="L46">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

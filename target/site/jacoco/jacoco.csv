@@ -1,0 +1,7 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+bioscoop-casus,nl.avans.bioscoop,MovieScreening,19,18,0,0,2,7,2,3,2,3
+bioscoop-casus,nl.avans.bioscoop,Order,338,138,14,30,57,26,17,18,8,5
+bioscoop-casus,nl.avans.bioscoop,Movie,9,25,0,0,3,7,3,2,3,2
+bioscoop-casus,nl.avans.bioscoop,MovieTicket,35,25,2,0,4,9,4,4,3,4
+bioscoop-casus,nl.avans.bioscoop,Main,175,0,2,0,24,0,3,0,2,0
+bioscoop-casus,nl.avans.bioscoop,TicketExportFormat,24,0,0,0,3,0,1,0,1,0
