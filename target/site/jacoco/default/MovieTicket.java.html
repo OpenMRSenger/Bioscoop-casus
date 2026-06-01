@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MovieTicket.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bioscoop-casus</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">MovieTicket.java</span></div><h1>MovieTicket.java</h1><pre class="source lang-java linenums">/**
+ * Een kaartje voor een specifieke stoel bij een {@link MovieScreening}.
+ * Een kaartje kan premium zijn; de premiumtoeslag wordt echter niet hier,
+ * maar in {@link Order#calculatePrice()} berekend, omdat de hoogte van de
+ * toeslag afhangt van of het een studentenbestelling is.
+ */
+public class MovieTicket {
+    private final MovieScreening movieScreening;
+    private final boolean isPremiumTicket;
+    private final int rowNr;
+    private final int seatNr;
+
+<span class="fc" id="L13">    public MovieTicket(MovieScreening movieScreening, boolean isPremiumTicket, int rowNr, int seatNr) {</span>
+<span class="fc" id="L14">        this.movieScreening = movieScreening;</span>
+<span class="fc" id="L15">        this.isPremiumTicket = isPremiumTicket;</span>
+<span class="fc" id="L16">        this.rowNr = rowNr;</span>
+<span class="fc" id="L17">        this.seatNr = seatNr;</span>
+<span class="fc" id="L18">    }</span>
+
+    /**
+     * @return de basisprijs van dit kaartje (de prijs per stoel van de
+     *         voorstelling), nog zonder eventuele premiumtoeslag.
+     */
+    public double getPrice() {
+<span class="fc" id="L25">        return movieScreening.getPricePerSeat();</span>
+    }
+
+    public boolean isPremiumTicket() {
+<span class="fc" id="L29">        return isPremiumTicket;</span>
+    }
+
+    public MovieScreening getMovieScreening() {
+<span class="fc" id="L33">        return movieScreening;</span>
+    }
+
+    public int getRowNr() {
+<span class="nc" id="L37">        return rowNr;</span>
+    }
+
+    public int getSeatNr() {
+<span class="nc" id="L41">        return seatNr;</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        String prefix = isPremiumTicket ? &quot;Premium ticket&quot; : &quot;Ticket&quot;;</span>
+<span class="nc" id="L47">        return prefix + &quot; voor &quot; + movieScreening</span>
+                + &quot; - rij &quot; + rowNr + &quot;, stoel &quot; + seatNr;
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
